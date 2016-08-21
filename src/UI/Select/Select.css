@@ -1,0 +1,69 @@
+@import '../../config.css';
+
+.Select {
+  display: block;
+  width: 100%;
+  position: relative;
+
+  &:after {
+    content:'\25BC';
+    display: block;
+    position: absolute;
+    top: 0; right: var(--baseline);
+    line-height: calc(var(--baseline) * 2.5);
+    font-size: calc(var(--baseline) * 2/3);
+    color: var(--colorMain);
+  }
+
+  &__fake {
+    display: block;
+    width: 100%;
+    padding:  calc(var(--baseline) / 2)
+              calc(var(--baseline) * 3)
+              calc(var(--baseline) / 2)
+              calc(var(--baseline) / 2);
+
+    font-family: var(--fontFamily);
+    font-size: var(--fontSize);
+    line-height: calc(var(--baseline) * 1.5);
+
+    color: var(--colorMain);
+
+    border: none;
+    border-bottom: 1px solid var(--colorBorder);
+
+    transition-property: border-color, color;
+    transition-duration: 0.2;
+
+    cursor: pointer;
+  }
+
+  &__input {
+    appearance: none;
+    opacity: 0;
+
+    display: block;
+    width: 100%;
+
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    z-index: 1;
+
+    &:disabled {
+      color: color(var(--colorMain) alpha(-50%));
+      cursor: not-allowed;
+    }
+  }
+}
+  .Select_disabled {
+    & .Select__fake {
+      color: color(var(--colorMain) alpha(-50%));
+    }
+  }
+  .Select_error {
+    & .Select__fake {
+      color: var(--colorError);
+      border-color: var(--colorError);
+    }
+  }

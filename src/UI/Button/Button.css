@@ -1,0 +1,119 @@
+@import '../../config.css';
+
+.Button {
+  display: inline-block;
+  padding: calc(var(--baseline) * 0.5) calc(var(--baseline) * 1.5);
+
+  font-size: 0.875rem;
+  font-weight: 600;
+
+  color: white;
+  text-decoration: none;
+
+  background: var(--colorMain);
+  border: 1px solid transparent;
+  border-radius: 0.188rem;
+
+  transition-property: color, background, border-color;
+  transition-duration: 0.2s, 0.2s, 0.2s, 0.2s;
+
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    background: white;
+    border-color: var(--colorMain);
+    color: var(--colorMain);
+  }
+
+  &:active {
+    color: white;
+    background: color(var(--colorMain) lightness(+25%));
+    border-color: transparent;
+  }
+
+  &:disabled {
+    color: white;
+    background: color(var(--colorMain) lightness(+25%));
+    border-color: transparent;
+    cursor: not-allowed;
+  }
+}
+  .Button_full {
+    width: 100%;
+  }
+  .Button_accent1 {
+    background: var(--colorAccent1);
+
+    &:hover {
+      border-color: var(--colorAccent1);
+      color: var(--colorAccent1);
+    }
+
+    &:active {
+      background: color(var(--colorAccent1) lightness(+25%));
+    }
+
+    &:disabled {
+      background: color(var(--colorAccent1) lightness(+25%));
+      color: white;
+      border-color: transparent;
+    }
+  }
+  .Button_accent2 {
+    background: var(--colorAccent2);
+
+    &:hover {
+      border-color: var(--colorAccent2);
+      color: var(--colorAccent2);
+    }
+
+    &:active {
+      background: color(var(--colorAccent2) lightness(+25%));
+    }
+
+    &:disabled {
+      background: color(var(--colorAccent2) lightness(+25%));
+      color: white;
+      border-color: transparent;
+    }
+  }
+  .Button_success {
+    background: var(--colorSuccess);
+
+    &:hover {
+      border-color: var(--colorSuccess);
+      color: var(--colorSuccess);
+    }
+
+    &:active {
+      background: color(var(--colorSuccess) lightness(+25%));
+    }
+
+    &:disabled {
+      background: color(var(--colorSuccess) lightness(+25%));
+      color: white;
+      border-color: transparent;
+    }
+  }
+  .Button_error {
+    background: var(--colorError);
+
+    &:hover {
+      border-color: var(--colorError);
+      color: var(--colorError);
+    }
+
+    &:active {
+      background: color(var(--colorError) lightness(+25%));
+    }
+
+    &:disabled {
+      background: color(var(--colorError) lightness(+25%));
+      color: white;
+      border-color: transparent;
+    }
+  }

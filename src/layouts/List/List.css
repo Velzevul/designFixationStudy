@@ -1,0 +1,9 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+
+  & > .list__item {
+    align-items: center;
+  }
+}

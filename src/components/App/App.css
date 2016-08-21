@@ -1,0 +1,9 @@
+@import '../../config.css';
+
+.App {
+  /**/
+}
+
+.Form {
+  width: calc(var(--baseline) * 30);
+}

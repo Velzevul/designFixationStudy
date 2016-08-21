@@ -1,0 +1,14 @@
+:root {
+  --baseline: 0.75rem;
+
+  --fontFamily: 'Open Sans', sans-serif;
+  --fontSize: 0.875rem;
+
+  /* https://flatuicolors.com/ */
+  --colorBorder:  #bdc3c7;
+  --colorMain:    #34495e;
+  --colorAccent1: #3498db;
+  --colorAccent2: #9b59b6;
+  --colorError:   #e74c3c;
+  --colorSuccess: #2ecc71;
+}

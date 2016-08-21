@@ -1,0 +1,30 @@
+@import '../../config.css';
+
+.LabelFirstGroup {
+  display: flex;
+  align-items: 'flex-start';
+  width: 100%;
+
+  &__label {
+    padding:  calc(var(--baseline) * 0.5)
+              calc(var(--baseline) * 1)
+              calc(var(--baseline) * 0.5)
+              0;
+    font-size: calc(var(--baseline));
+    line-height: calc(var(--baseline) * 1.5);
+    text-align: right;
+  }
+
+  &__input {
+    flex: 1;
+    width: 100%;
+  }
+
+  &__error {
+    font-size: calc(var(--baseline));
+    font-weight: 300;
+    line-height: calc(var(--baseline) * 1.5);
+
+    color: var(--colorError);
+  }
+}

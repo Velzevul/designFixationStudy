@@ -1,0 +1,40 @@
+@import '../../config.css';
+
+.Input {
+  display: block;
+  width: 100%;
+  padding: calc(var(--baseline) * 0.5);
+
+  font-family: var(--fontFamily);
+  font-size: var(--fontSize);
+  line-height: calc(var(--baseline) * 1.5);
+
+  color: var(--colorMain);
+
+  background-color: none;
+  border: none;
+  border-bottom: 1px solid var(--colorBorder);
+
+  transition-property: border-color, color;
+  transition-duration: 0.2;
+
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+    border-color: var(--colorAccent1);
+  }
+
+  &:disabled {
+    color: color(var(--colorMain) alpha(-50%));
+    cursor: not-allowed;
+  }
+}
+  .Input_error {
+    border-color: var(--colorError);
+    color: var(--colorError);
+
+    &:focus {
+      border-color: var(--colorError);
+    }
+  }
