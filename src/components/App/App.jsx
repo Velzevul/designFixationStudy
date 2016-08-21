@@ -51,11 +51,11 @@ class App extends React.Component {
   }
 
   startSession () {
-    // socket.emit('create study', {
-    //   participantId: this.state.participantId,
-    //   condition: currentTask.condition,
-    //   taskAlias: currentTask.taskAlias
-    // })
+    socket.emit('create study', {
+      participantId: this.state.participantId,
+      condition: this.state.condition,
+      taskAlias: this.state.taskAlias
+    })
 
     console.log({
       participantId: this.state.participantId,
@@ -69,7 +69,7 @@ class App extends React.Component {
   }
 
   endSession () {
-    // socket.emit('kill study')
+    socket.emit('kill study')
 
     this.setState({
       sessionActive: false
