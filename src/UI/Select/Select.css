@@ -54,6 +54,10 @@
       color: color(var(--colorMain) alpha(-50%));
       cursor: not-allowed;
     }
+
+    &:focus + .Select__fake {
+      border-color: var(--colorAccent1);
+    }
   }
 }
   .Select_disabled {

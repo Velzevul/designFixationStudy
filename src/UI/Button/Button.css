@@ -14,13 +14,14 @@
   border: 1px solid transparent;
   border-radius: 0.188rem;
 
-  transition-property: color, background, border-color;
-  transition-duration: 0.2s, 0.2s, 0.2s, 0.2s;
+  transition-property: color, background, border-color, box-shadow;
+  transition-duration: 0.2s, 0.2s, 0.2s, 0.2s, 0.2s;
+  box-shadow: none;
 
   cursor: pointer;
 
   &:focus {
-    outline: none;
+    outline: 1px dashed var(--colorAccent1);
   }
 
   &:hover {
@@ -48,6 +49,10 @@
   .Button_accent1 {
     background: var(--colorAccent1);
 
+    &:focus {
+      outline: 1px dashed var(--colorMain);
+    }
+
     &:hover {
       border-color: var(--colorAccent1);
       color: var(--colorAccent1);
@@ -65,6 +70,10 @@
   }
   .Button_accent2 {
     background: var(--colorAccent2);
+
+    &:focus {
+      outline: 1px dashed var(--colorMain);
+    }
 
     &:hover {
       border-color: var(--colorAccent2);
@@ -84,6 +93,10 @@
   .Button_success {
     background: var(--colorSuccess);
 
+    &:focus {
+      outline: 1px dashed var(--colorMain);
+    }
+
     &:hover {
       border-color: var(--colorSuccess);
       color: var(--colorSuccess);
@@ -101,6 +114,10 @@
   }
   .Button_error {
     background: var(--colorError);
+
+    &:focus {
+      outline: 1px dashed var(--colorMain);
+    }
 
     &:hover {
       border-color: var(--colorError);

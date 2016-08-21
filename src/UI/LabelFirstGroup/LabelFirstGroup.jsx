@@ -6,7 +6,7 @@ const LabelFirstGroup = ({
   label,
   error,
   input,
-  labelWidth = '5rem'
+  labelWidth = '8rem'
 }) => {
   let errorEl = ''
   if (error) {

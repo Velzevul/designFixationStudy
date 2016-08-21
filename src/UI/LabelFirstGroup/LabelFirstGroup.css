@@ -10,7 +10,7 @@
               calc(var(--baseline) * 1)
               calc(var(--baseline) * 0.5)
               0;
-    font-size: calc(var(--baseline));
+    font-size: calc(var(--fontSize));
     line-height: calc(var(--baseline) * 1.5);
     text-align: right;
   }

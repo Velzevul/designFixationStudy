@@ -37,8 +37,6 @@ class Select extends React.Component {
 
     return (
       <div className={classNames.join(' ')}>
-        <div className={styles.Select__fake}>{inputLabel}</div>
-
         <select
           className={styles.Select__input}
           ref={el => { this._element = el }}
@@ -49,6 +47,8 @@ class Select extends React.Component {
             <option key={index} value={o.value}>{o.label}</option>
           )}
         </select>
+
+        <div className={styles.Select__fake}>{inputLabel}</div>
       </div>
     )
   }
