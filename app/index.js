@@ -138,9 +138,9 @@ webpackJsonp([0,2],{
 	    value: function componentDidMount() {
 	      var _this2 = this;
 	
-	      socket.emit('get state');
+	      socket.emit('get study');
 	
-	      socket.on('state', function (data) {
+	      socket.on('study', function (data) {
 	        _this2.setState({
 	          participantId: data.participantId,
 	          condition: data.condition,

@@ -39,9 +39,9 @@ class App extends React.Component {
   }
 
   componentDidMount () {
-    socket.emit('get state')
+    socket.emit('get study')
 
-    socket.on('state', (data) => {
+    socket.on('study', (data) => {
       this.setState({
         participantId: data.participantId,
         condition: data.condition,
