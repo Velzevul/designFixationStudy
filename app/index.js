@@ -125,10 +125,10 @@ webpackJsonp([0,2],{
 	    _this.endSession = _this.endSession.bind(_this);
 	
 	    _this.state = {
-	      sessionActive: false,
+	      sessionActive: '',
 	      participantId: '',
-	      condition: CONDITION_1,
-	      taskAlias: TASK_1
+	      condition: '',
+	      taskAlias: ''
 	    };
 	    return _this;
 	  }
@@ -141,8 +141,10 @@ webpackJsonp([0,2],{
 	      socket.emit('get study');
 	
 	      socket.on('study', function (data) {
+	        console.log(data);
+	
 	        _this2.setState({
-	          sessionActive: true,
+	          sessionActive: data.current,
 	          participantId: data.participantId,
 	          condition: data.condition,
 	          taskAlias: data.taskAlias

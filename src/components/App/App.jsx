@@ -31,10 +31,10 @@ class App extends React.Component {
     this.endSession = this.endSession.bind(this)
 
     this.state = {
-      sessionActive: false,
+      sessionActive: '',
       participantId: '',
-      condition: CONDITION_1,
-      taskAlias: TASK_1
+      condition: '',
+      taskAlias: ''
     }
   }
 
@@ -42,8 +42,10 @@ class App extends React.Component {
     socket.emit('get study')
 
     socket.on('study', (data) => {
+      console.log(data)
+
       this.setState({
-        sessionActive: true,
+        sessionActive: data.current,
         participantId: data.participantId,
         condition: data.condition,
         taskAlias: data.taskAlias
