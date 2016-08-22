@@ -41,7 +41,7 @@ const config = {
   output: {
     path: PATHS.app,
     filename: '[name].js',
-    publicPath: '/app/'
+    publicPath: NODE_ENV === 'production' ? '/inspirationSeekingStudy/' : '/app/'
   },
   resolve: {
     extensions: ['', '.js', '.jsx']
