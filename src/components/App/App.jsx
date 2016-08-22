@@ -43,6 +43,7 @@ class App extends React.Component {
 
     socket.on('study', (data) => {
       this.setState({
+        sessionActive: true,
         participantId: data.participantId,
         condition: data.condition,
         taskAlias: data.taskAlias

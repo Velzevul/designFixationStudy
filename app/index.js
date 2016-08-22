@@ -142,6 +142,7 @@ webpackJsonp([0,2],{
 	
 	      socket.on('study', function (data) {
 	        _this2.setState({
+	          sessionActive: true,
 	          participantId: data.participantId,
 	          condition: data.condition,
 	          taskAlias: data.taskAlias
