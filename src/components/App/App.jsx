@@ -114,7 +114,7 @@ class App extends React.Component {
                     <Checkbox
                       disabled={this.state.sessionId}
                       checked={this.state.training === true}
-                      onChange={() => this.setState({training: !this.state.training})} />
+                      onChange={() => this.setState({training: !this.state.training, taskAlias: TASK_3})} />
                   } />
               </Block>
 
@@ -149,7 +149,7 @@ class App extends React.Component {
                         }
                       ]}
                       value={this.state.taskAlias}
-                      disabled={this.state.sessionId}
+                      disabled={this.state.sessionId || this.state.training}
                       onChange={(v) => this.setState({taskAlias: v})} />
                   } />
               </Block>
