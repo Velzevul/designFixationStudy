@@ -109,7 +109,7 @@ class App extends React.Component {
             <div className={styles.Form}>
               <Block>
                 <InlineGroup
-                  label="Testing"
+                  label="Training"
                   input={
                     <Checkbox
                       disabled={this.state.sessionId}
