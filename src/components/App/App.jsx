@@ -114,7 +114,10 @@ class App extends React.Component {
                     <Checkbox
                       disabled={this.state.sessionId}
                       checked={this.state.training === true}
-                      onChange={() => this.setState({training: !this.state.training, taskAlias: TASK_3})} />
+                      onChange={() => this.setState({
+                        training: !this.state.training,
+                        taskAlias: this.state.training ? TASK_3 : this.state.taskAlias
+                      })} />
                   } />
               </Block>
 
