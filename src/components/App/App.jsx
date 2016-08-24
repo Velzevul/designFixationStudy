@@ -8,11 +8,9 @@ import Block from '../../layouts/Block'
 
 import InputGroup from '../../UI/InputGroup'
 import InlineGroup from '../../UI/InlineGroup'
-import LabelFirstGroup from '../../UI/LabelFirstGroup'
 import Input from '../../UI/Input'
 import Select from '../../UI/Select'
 import Checkbox from '../../UI/Checkbox'
-import Radio from '../../UI/Radio'
 import Button from '../../UI/Button'
 
 const socket = io('https://vdziubak.com/', {path: '/designFixationServer'})
@@ -31,10 +29,12 @@ class App extends React.Component {
     this.endSession = this.endSession.bind(this)
 
     this.state = {
-      sessionActive: '',
       participantId: '',
+      sessionId: null,
       condition: '',
-      taskAlias: ''
+      taskAlias: '',
+      training: false,
+      log: []
     }
   }
 
@@ -42,13 +42,45 @@ class App extends React.Component {
     socket.emit('get study')
 
     socket.on('study', (data) => {
-      console.log(data)
-
+      console.log('here')
       this.setState({
-        sessionActive: data.current,
+        sessionId: data.sessionId,
         participantId: data.participantId,
         condition: data.condition,
-        taskAlias: data.taskAlias
+        taskAlias: data.taskAlias,
+        training: data.training,
+        log: [
+          ...this.state.log,
+          `${data.training ? 'training' : ''} session ${data.sessionId}`
+        ]
+      })
+    })
+
+    socket.on('confirm kill study', () => {
+      this.setState({
+        sessionId: null,
+        log: [
+          ...this.state.log,
+          'session killed'
+        ]
+      })
+    })
+
+    socket.on('confirm create example', example => {
+      this.setState({
+        log: [
+          ...this.state.log,
+          `created example '${example.imageDescription}' for query '${example.query}'`
+        ]
+      })
+    })
+
+    socket.on('confirm create query', query => {
+      this.setState({
+        log: [
+          ...this.state.log,
+          `created query ${query.query}`
+        ]
       })
     })
   }
@@ -57,106 +89,109 @@ class App extends React.Component {
     socket.emit('create study', {
       participantId: this.state.participantId,
       condition: this.state.condition,
-      taskAlias: this.state.taskAlias
-    })
-
-    console.log({
-      participantId: this.state.participantId,
-      condition: this.state.condition,
-      taskAlias: this.state.taskAlias
-    })
-
-    this.setState({
-      sessionActive: true
+      taskAlias: this.state.taskAlias,
+      training: this.state.training
     })
   }
 
   endSession () {
     socket.emit('kill study')
-
-    this.setState({
-      sessionActive: false
-    })
   }
 
   render () {
     return (
       <div className={styles.App}>
         <Flex
+          flexDirection="column"
           alignItems="center"
           justifyContent="center">
-          <div className={styles.Form}>
-            <Block>
-              <InputGroup
-                label="Participant Name"
-                input={
-                  <Input
-                    disabled={this.state.sessionActive}
-                    value={this.state.participantId}
-                    onChange={(v) => this.setState({participantId: v})} />
-                } />
-            </Block>
+          <Block n={2}>
+            <div className={styles.Form}>
+              <Block>
+                <InlineGroup
+                  label="Testing"
+                  input={
+                    <Checkbox
+                      disabled={this.state.sessionId}
+                      checked={this.state.training === true}
+                      onChange={() => this.setState({training: !this.state.training})} />
+                  } />
+              </Block>
 
-            <Block>
-              <InputGroup
-                label="Condition"
-                input={
-                  <Select
-                    options={[
-                      {
-                        value: CONDITION_1,
-                        label: CONDITION_1
-                      },
-                      {
-                        value: CONDITION_2,
-                        label: CONDITION_2
-                      }
-                    ]}
-                    value={this.state.condition}
-                    disabled={this.state.sessionActive}
-                    onChange={(v) => this.setState({condition: v})} />
-                } />
-            </Block>
+              <Block>
+                <InputGroup
+                  label="Participant Name"
+                  input={
+                    <Input
+                      disabled={this.state.sessionId}
+                      value={this.state.participantId}
+                      onChange={(v) => this.setState({participantId: v})} />
+                  } />
+              </Block>
 
-            <Block n={2}>
-              <InputGroup
-                label="Task"
-                input={
-                  <Select
-                    options={[
-                      {
-                        value: TASK_1,
-                        label: TASK_1
-                      },
-                      {
-                        value: TASK_2,
-                        label: TASK_2
-                      },
-                      {
-                        value: TASK_3,
-                        label: TASK_3
-                      }
-                    ]}
-                    value={this.state.taskAlias}
-                    disabled={this.state.sessionActive}
-                    onChange={(v) => this.setState({taskAlias: v})} />
-                } />
-            </Block>
+              <Block n={2}>
+                <InputGroup
+                  label="Task"
+                  input={
+                    <Select
+                      options={[
+                        {
+                          value: TASK_1,
+                          label: TASK_1
+                        },
+                        {
+                          value: TASK_2,
+                          label: TASK_2
+                        },
+                        {
+                          value: TASK_3,
+                          label: TASK_3
+                        }
+                      ]}
+                      value={this.state.taskAlias}
+                      disabled={this.state.sessionId}
+                      onChange={(v) => this.setState({taskAlias: v})} />
+                  } />
+              </Block>
 
-            {
-              this.state.sessionActive
-              ? <Button
-                fullWidth
-                theme="error"
-                text="End Session"
-                onClick={this.endSession} />
-              : <Button
-                fullWidth
-                theme="accent1"
-                text="Start Session"
-                onClick={this.startSession} />
-            }
-          </div>
+              <Block>
+                <InputGroup
+                  label="Condition"
+                  input={
+                    <Select
+                      options={[
+                        {
+                          value: CONDITION_1,
+                          label: CONDITION_1
+                        },
+                        {
+                          value: CONDITION_2,
+                          label: CONDITION_2
+                        }
+                      ]}
+                      value={this.state.condition}
+                      disabled={this.state.sessionId}
+                      onChange={(v) => this.setState({condition: v})} />
+                  } />
+              </Block>
+
+              {
+                this.state.sessionId
+                ? <Button
+                  fullWidth
+                  theme="error"
+                  text="End Session"
+                  onClick={this.endSession} />
+                : <Button
+                  fullWidth
+                  theme="accent1"
+                  text="Start Session"
+                  onClick={this.startSession} />
+              }
+            </div>
+          </Block>
+
+          {this.state.log.slice(-5).map((l, index) => <div key={index}>{l}</div>)}
         </Flex>
       </div>
     )
