@@ -121,8 +121,8 @@ webpackJsonp([0,2],{
 	    _this.state = {
 	      participantId: '',
 	      sessionId: null,
-	      condition: '',
-	      taskAlias: '',
+	      condition: CONDITION_1,
+	      taskAlias: TASK_1,
 	      training: false,
 	      log: []
 	    };
