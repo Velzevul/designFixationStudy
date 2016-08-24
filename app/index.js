@@ -211,7 +211,10 @@ webpackJsonp([0,2],{
 	                    disabled: this.state.sessionId,
 	                    checked: this.state.training === true,
 	                    onChange: function onChange() {
-	                      return _this3.setState({ training: !_this3.state.training });
+	                      return _this3.setState({
+	                        training: !_this3.state.training,
+	                        taskAlias: !_this3.state.training ? TASK_3 : _this3.state.taskAlias
+	                      });
 	                    } }) })
 	              ),
 	              _react2.default.createElement(
@@ -243,7 +246,7 @@ webpackJsonp([0,2],{
 	                      label: TASK_3
 	                    }],
 	                    value: this.state.taskAlias,
-	                    disabled: this.state.sessionId,
+	                    disabled: this.state.sessionId || this.state.training,
 	                    onChange: function onChange(v) {
 	                      return _this3.setState({ taskAlias: v });
 	                    } }) })
